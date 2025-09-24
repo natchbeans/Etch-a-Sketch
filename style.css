@@ -1,0 +1,21 @@
+.gridContainer {
+    width: 500px;
+    height:500px;
+    display: flex;
+    justify-content: center;
+    
+    border: 1px solid black;
+}
+
+.rowDiv {
+    display:flex;
+
+}
+
+.squareDiv {
+    height: 10px;
+    width: 10px;
+    background-color: aqua;
+    border: 1px solid black;
+    
+}
