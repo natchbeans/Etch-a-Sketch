@@ -32,12 +32,62 @@ function createGrid(){
 //background color of the square to pink.
 
 function hoverOverSquareFromGrid(gridSquares){
+
+    let purpleColor = false;
+    const purpleColorButton = document.querySelector('#purpleButton');
+    purpleColorButton.addEventListener('click', function(e){
+        redColor = false;
+        blueColor = false;
+        purpleColor = true; 
+    });
+
+    let redColor = false;
+    const redColorButton = document.querySelector('#redButton');
+    redColorButton.addEventListener('click', function(e){
+        purpleColor = false;
+        blueColor = false;
+        redColor = true; 
+    });
+
+    let blueColor = false;
+    const blueColorButton = document.querySelector('#blueButton');
+    blueColorButton.addEventListener('click', function(e){
+        purpleColor = false;
+        redColor = false;
+        blueColor = true; 
+    });
+
+
     gridSquares.forEach(function(square){
         square.addEventListener('mouseenter', function(e){
-            // console.log(e.currentTarget);
-            e.currentTarget.style.background = 'pink';
+            if (purpleColor === true){
+                e.currentTarget.style.background = 'purple';
+            }
+            else if (redColor === true){
+                e.currentTarget.style.background = 'red';
+            }
+            else if (blueColor === true){
+                e.currentTarget.style.background = 'blue';
+            }
+            else{
+                e.currentTarget.style.background = 'white';
+
+            }
+
         });
     });
 }
 
-hoverOverSquareFromGrid(createGrid());
+function clearButton(gridSquares){
+    const clearButton = document.querySelector('#clearButton');
+    clearButton.addEventListener('click', function(){
+        gridSquares.forEach(function(square){
+            square.style.background = 'white';
+        });
+    });
+}
+
+
+const squares = createGrid();
+hoverOverSquareFromGrid(squares);
+clearButton(squares);
