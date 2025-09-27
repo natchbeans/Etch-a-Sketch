@@ -33,47 +33,24 @@ function createGrid(){
 
 function hoverOverSquareFromGrid(gridSquares){
 
-    let purpleColor = false;
-    const purpleColorButton = document.querySelector('#purpleButton');
-    purpleColorButton.addEventListener('click', function(e){
-        redColor = false;
-        blueColor = false;
-        purpleColor = true; 
+    let selectedColor = '';
+
+    //Made easier. Now, i iterate through the nodelist for colorbuttons. 
+    //And every button i do an eventlistener. When i click it changes a function scope variable to
+    //whatever the textcontent is of the button. This would for a list as well.
+
+    const colorButtons = document.querySelectorAll('.colorButton');
+    colorButtons.forEach(function(btn){
+        btn.addEventListener('click', function(e){ //registers callback to happen when click happens
+            selectedColor = e.currentTarget.textContent;
+        });
     });
 
-    let redColor = false;
-    const redColorButton = document.querySelector('#redButton');
-    redColorButton.addEventListener('click', function(e){
-        purpleColor = false;
-        blueColor = false;
-        redColor = true; 
-    });
-
-    let blueColor = false;
-    const blueColorButton = document.querySelector('#blueButton');
-    blueColorButton.addEventListener('click', function(e){
-        purpleColor = false;
-        redColor = false;
-        blueColor = true; 
-    });
-
+    
 
     gridSquares.forEach(function(square){
         square.addEventListener('mouseenter', function(e){
-            if (purpleColor === true){
-                e.currentTarget.style.background = 'purple';
-            }
-            else if (redColor === true){
-                e.currentTarget.style.background = 'red';
-            }
-            else if (blueColor === true){
-                e.currentTarget.style.background = 'blue';
-            }
-            else{
-                e.currentTarget.style.background = 'white';
-
-            }
-
+            e.currentTarget.style.background = selectedColor;
         });
     });
 }
